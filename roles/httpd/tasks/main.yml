@@ -1,0 +1,21 @@
+---
+ - name: install httpd
+   yum:
+    name: httpd
+    state: present
+ - name: copy index file
+   copy:
+    src: /root/ansible/roles/httpd/templetes/index.j2
+    dest: /var/www/html/index.html
+ - name: start service
+   service: 
+    name: httpd
+    state: satrted
+    enabled: true
+ - name: add firewall
+   firewalld: 
+    service: http
+    permanent: yes
+    state: enabled
+    immediate: yes
+

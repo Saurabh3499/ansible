@@ -1,0 +1,23 @@
+---
+ - hosts: all
+   tasks: 
+     - name: copy file from managed node to control node
+       fetch: 
+         src: /root/abc
+         dest: /root/ansible
+     - name: add line in existing file
+       lineinfile: 
+         path: /root/abc
+         line: "Hello" 
+         state: present 
+     - name : add append containt 
+       lineinfile:
+         path: /root/abc
+         regexp: "^BIOS_VERSION"
+         line: BIOS_VERSION="{{ansible_bios_version}}"
+         state: present
+     - name: using block
+       blockinfile: 
+         path: /root/abc
+         block: "hello"
+        

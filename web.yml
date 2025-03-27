@@ -1,0 +1,28 @@
+---
+ - hosts: all
+   tasks: 
+      - name: installing httpd pkg
+        yum:
+          name: httpd
+          state: present
+      - name: copy file 
+        copy:
+          content: "ansible"
+          dest: /var/www/html/index.html  
+        notify: "task1"  
+      - name: start service
+        service: 
+          name: httpd
+          state: started
+          enabled: true 
+      - name: add rule
+        firewalld: 
+          service: http
+          permanent: true
+          state: enabled
+          immediate: true 
+   handlers:
+      - name: task1
+        service:
+          name: httpd
+          state: restarted

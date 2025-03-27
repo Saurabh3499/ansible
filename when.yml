@@ -1,0 +1,8 @@
+---
+ - hosts: all
+   tasks: 
+    - name: using when parameter
+      yum: 
+       name: httpd
+       state: present
+      when: ansible_distribution == "RedHat"

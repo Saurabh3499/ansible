@@ -1,0 +1,9 @@
+--- 
+ - hosts: all
+   tasks: 
+   - name: print output 
+     debug: 
+       msg: "this system ip address is {{ansible_default_ipv4.address}} and {{inventory_hostname}} {{groups}} {{ansible_os_family}}"
+          
+          
+                     

@@ -1,0 +1,15 @@
+---
+ - hosts: all
+   tasks: 
+    - name: adding multiple user
+      user: 
+       name: "{{item.name}}"
+       groups: "{{item.group}}"
+       state: present
+      loop: 
+            - name: sab
+              group: sells
+            - name: asd
+              group: sells
+
+
